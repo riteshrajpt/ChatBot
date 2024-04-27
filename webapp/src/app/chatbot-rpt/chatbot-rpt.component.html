@@ -1,0 +1,87 @@
+<div class="container mt-5">
+    <div>
+        <div class="tb_search">
+            <input type="text" placeholder="Search Open or Close Tickets" [(ngModel)]="searchText" class="form-control">
+                    </div>
+        
+        <br><br>
+        <table class="table table-bordered table-bordered table-striped table-responsive-stack">
+            <thead class="thead">
+            <tr>
+                <th>Conversation ID</th>
+                <th>Date & Time</th>
+                <th>Chat History</th>
+                <th>Chat Conversation Status</th>
+                <th>Status</th>  
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            <tr *ngFor="let chatLog of ChatRptConversationID">
+                <td>{{chatLog.conversationid}}</td>
+                <td>{{chatLog.timestamp}}</td>
+                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"
+                        (click)="ChatDetails(chatLog.conversationid)">
+                        View Chat
+                    </button></td>
+                <td><b>{{chatLog.status}}</b></td>
+                <td>
+                    <button (click)="enableDisableRule(chatLog)" type="button"
+                        class="btn btn-primary">Click to open or close ticket</button>
+                </td>
+                <td>
+                    <button  type="button" (click)="ExportChatList(chatLog.conversationid)"
+                        class="btn btn-warning">Export</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+ 
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content chat">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Chat History</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Conversation Id</th>
+                            <th >Date & Time</th>
+                            <th class="user-query">User Query</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let chatLog of ChatRptDetails">
+                            <td>{{chatLog.conversationid}}</td>
+                            <td>{{chatLog.timestamp}}</td>
+                            <td>{{chatLog.txtQuery}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+
