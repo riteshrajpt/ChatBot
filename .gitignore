@@ -1,0 +1,23 @@
+# Local tooling, credentials, generated files and developer settings
+**/bin/
+**/obj/
+**/.vs/
+**/.local/
+**/.tools/
+**/node_modules/
+**/dist/
+**/releases/
+*.user
+*.suo
+*.pubxml
+*.log
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.key
+
+# Operating system files
+.DS_Store
+Thumbs.db

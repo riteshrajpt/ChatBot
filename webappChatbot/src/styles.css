@@ -1,0 +1,8 @@
+﻿@font-face{font-family:Manrope;src:url('assets/fonts/Manrope-variable.woff2') format('woff2');font-weight:200 800;font-style:normal;font-display:swap}
+html{scroll-behavior:smooth;scroll-padding-top:95px}
+body{margin:0;background:#f9faf5;color:#182b2a;font-family:Manrope,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:#d5f564;color:#182b2a}
+button,input,textarea,select{font-family:inherit}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+

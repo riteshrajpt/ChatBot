@@ -1,0 +1,23 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": { "Dbconnection": "" },
+  "Cors": { "AllowedOrigins": [] },
+  "Mail": {
+    "Mode": "Disabled",
+    "Host": "smtp.office365.com",
+    "Port": 587,
+    "Username": "",
+    "Password": "",
+    "FromAddress": "HolostikBi@holostik.com",
+    "FromName": "Compileon Innovation",
+    "EnableSsl": true,
+    "PublicSiteUrl": ""
+  }
+}

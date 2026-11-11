@@ -1,0 +1,125 @@
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" [class.scrolled]="scrolled">
+  <div class="shell header-inner">
+    <a class="brand" href="/homepage" aria-label="Compileon home"><span class="brand-mark" aria-hidden="true"><span></span></span><span>compileon<span class="brand-period">.</span></span></a>
+    <nav class="desktop-nav" aria-label="Main navigation"><a href="#services">Expertise</a><a href="#possibilities">Possibilities</a><a href="#approach">Our approach</a><a href="#about">About us</a></nav>
+    <button class="button button-dark header-cta" (click)="startProject()">Let’s build together <svg aria-hidden="true"><use href="assets/compileon-icons.svg#diagonal"></use></svg></button>
+    <button class="mobile-menu-button" (click)="menuOpen = !menuOpen" [attr.aria-expanded]="menuOpen" aria-controls="mobile-navigation" [attr.aria-label]="menuOpen ? 'Close navigation' : 'Open navigation'"><svg aria-hidden="true"><use [attr.href]="'assets/compileon-icons.svg#' + (menuOpen ? 'close' : 'menu')"></use></svg></button>
+  </div>
+  <nav id="mobile-navigation" class="mobile-navigation" *ngIf="menuOpen" aria-label="Mobile navigation"><a href="#services" (click)="closeMenu()">Expertise</a><a href="#possibilities" (click)="closeMenu()">Possibilities</a><a href="#approach" (click)="closeMenu()">Our approach</a><a href="#about" (click)="closeMenu()">About us</a><button (click)="startProject()">Start a project ↗</button></nav>
+</header>
+
+<main id="main">
+  <section class="hero shell">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="tiny-dot"></span> CURIOUS MINDS. PURPOSEFUL TECHNOLOGY.</div>
+      <h1>Ideas, compiled<br>into <span class="impact-word">impact<svg viewBox="0 0 310 18" aria-hidden="true"><path d="M3 12Q140-5 304 9" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg></span><span class="title-period">.</span></h1>
+      <p class="hero-description">We turn ambitious ideas into thoughtful digital experiences. Software, AI and cloud engineering — connected by a belief that technology should move you forward.</p>
+      <div class="hero-actions"><button class="button button-lime" (click)="startProject()">Bring your idea to life <svg aria-hidden="true"><use href="assets/compileon-icons.svg#diagonal"></use></svg></button><a class="text-link" href="#services">Explore our expertise <span aria-hidden="true">↓</span></a></div>
+      <div class="hero-note"><span class="note-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Thoughtfully designed.<br><strong>Engineered for what’s next.</strong></span></div>
+    </div>
+    <div class="hero-art" (mousemove)="moveHero($event)" (mouseleave)="resetHero()" aria-label="Illustration of an idea becoming a connected digital product" role="img">
+      <div class="art-topline"><span><i></i> THE COMPILEON WAY</span><span>IDEA → IMPACT</span></div>
+      <div class="art-grid" aria-hidden="true"></div>
+      <div class="art-orbit orbit-one" aria-hidden="true"></div><div class="art-orbit orbit-two" aria-hidden="true"></div>
+      <svg class="art-paths" viewBox="0 0 540 520" fill="none" aria-hidden="true"><path d="M0 275h90q35 0 35 35v70q0 25 25 25h160q30 0 30-30V135q0-25 25-25h175" stroke="#6d8a79" stroke-dasharray="4 7"/><path d="M0 400h80q25 0 25-25V150q0-25 25-25h120" stroke="#b7e1a5" stroke-opacity=".25"/><circle cx="125" cy="275" r="5" fill="#d5f564"/><circle cx="340" cy="270" r="5" fill="#d5f564"/><circle cx="410" cy="110" r="4" fill="#d5f564"/></svg>
+      <div class="art-plane" [style.transform]="heroTransform">
+        <div class="floating-label label-design"><span class="label-symbol">✳</span><span>Start with<br><strong>a good question.</strong></span></div>
+        <div class="product-window">
+          <div class="window-top"><span class="window-dots"><i></i><i></i><i></i></span><span>possibility.ts</span><svg aria-hidden="true"><use href="assets/compileon-icons.svg#code"></use></svg></div>
+          <div class="window-content"><span class="code-comment">// A little curiosity changes everything.</span><div class="code-line"><span class="code-purple">const</span> nextBigThing = <span class="code-blue">&#123;</span></div><div class="code-line code-indent">idea: <span class="code-green">'yours'</span>,</div><div class="code-line code-indent">possibilities: <span class="code-orange">endless</span>,</div><div class="code-line code-indent">builtWith: <span class="code-green">'compileon'</span></div><div class="code-line"><span class="code-blue">&#125;</span>;</div></div>
+          <div class="window-build"><span class="build-check"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#check"></use></svg></span><div>Thought → something real.<span>LET’S MAKE IT HAPPEN</span></div><span class="build-spark" aria-hidden="true">✳</span></div>
+        </div>
+        <div class="floating-label label-connected"><span class="connected-icon"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#network"></use></svg></span><div>Everything connected.<span><i></i> READY TO EVOLVE</span></div></div>
+        <div class="orbit-emblem" aria-hidden="true">c<span>•</span></div>
+      </div>
+      <div class="art-bottomline"><span class="mono">DESIGN + ENGINEERING + INTELLIGENCE</span><span class="art-plus">+</span></div>
+    </div>
+  </section>
+
+  <div class="capability-strip" aria-label="Software development, AI automation, cloud engineering, connected experiences"><div class="strip-track"><span *ngFor="let repeat of [1,2]" [attr.aria-hidden]="repeat === 2 ? 'true' : null"><span>SOFTWARE DEVELOPMENT</span><i>✳</i><span>AI & AUTOMATION</span><i>✳</i><span>CLOUD ENGINEERING</span><i>✳</i><span>CONNECTED EXPERIENCES</span><i>✳</i></span></div></div>
+
+  <section id="services" class="section expertise shell">
+    <div class="section-heading reveal"><div><span class="eyebrow section-label">01 / OUR EXPERTISE</span><h2>Big ideas need<br>the right <span class="serif-word">building blocks.</span></h2></div><p>From your first “what if” to your next release,<br class="desktop-break"> we bring the pieces together.</p></div>
+    <div class="expertise-layout reveal">
+      <div class="service-list" role="tablist" aria-label="Explore our expertise" aria-orientation="vertical">
+        <button *ngFor="let service of services; let i = index" class="service-item" [class.selected]="selectedService === i" (click)="selectService(i)" (keydown)="onTabKey($event, 'service')" [attr.tabindex]="selectedService === i ? 0 : -1" role="tab" [attr.aria-selected]="selectedService === i" [attr.id]="'service-tab-' + i" [attr.aria-controls]="'service-detail-' + i">
+          <span class="service-number">{{ service.number }}</span><span class="service-name">{{ service.name }}</span><svg aria-hidden="true"><use href="assets/compileon-icons.svg#diagonal"></use></svg>
+        </button>
+      </div>
+      <div class="service-detail" role="tabpanel" [attr.id]="'service-detail-' + selectedService" [attr.aria-labelledby]="'service-tab-' + selectedService">
+        <span class="detail-icon"><svg aria-hidden="true"><use [attr.href]="'assets/compileon-icons.svg#' + services[selectedService].icon"></use></svg></span>
+        <span class="detail-kicker">{{ services[selectedService].short }}</span><h3>{{ services[selectedService].detail }}</h3><p>{{ services[selectedService].body }}</p>
+        <div class="service-outcomes"><h4>What we can help with</h4><ul><li *ngFor="let outcome of serviceOutcomes[selectedService]"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#check"></use></svg>{{ outcome }}</li></ul></div>
+        <div class="service-tags"><span *ngFor="let tag of services[selectedService].tags">{{ tag }}</span></div>
+        <button class="text-link" (click)="startProject(services[selectedService].name)">Let’s explore the possibilities <svg aria-hidden="true"><use href="assets/compileon-icons.svg#arrow"></use></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="possibilities" class="possibilities section">
+    <div class="shell">
+      <div class="section-heading reveal"><div><span class="eyebrow section-label">02 / POSSIBILITIES, MADE PRACTICAL</span><h2>Less “imagine if”.<br>More <span class="serif-word">“here it is”.</span></h2></div><p>A few ways technology can make<br class="desktop-break"> the everyday feel extraordinary.</p></div>
+      <div class="possibility-grid reveal">
+        <article class="possibility-main">
+          <div class="demo-tabs" role="tablist" aria-label="Example solutions"><button *ngFor="let tab of demoTabs; let i = index" role="tab" [attr.aria-selected]="activeDemo === i" [class.active]="activeDemo === i" (click)="activeDemo = i" (keydown)="onTabKey($event, 'demo')" [attr.tabindex]="activeDemo === i ? 0 : -1" [attr.id]="'demo-tab-' + i" aria-controls="example-demo">{{ tab }}</button></div>
+          <div class="demo-stage" id="example-demo" role="tabpanel" [attr.aria-labelledby]="'demo-tab-' + activeDemo">
+            <div class="demo-dashboard" *ngIf="activeDemo === 0">
+              <aside class="demo-sidebar"><span class="demo-brand"><i></i> workspace</span><span class="demo-side-active">⌘ &nbsp; Overview</span><span>▦ &nbsp; Projects</span><span>◷ &nbsp; Activity</span><span>⚙ &nbsp; Settings</span><div class="demo-avatar">Y<span>Your workspace<br><b>A little more organised.</b></span></div></aside>
+              <div class="demo-body"><div class="demo-body-heading"><span>Good ideas live here.<small>Your next chapter, taking shape.</small></span><i>+</i></div><div class="demo-stat-row"><span>DESIGN<br><strong>A clear direction.</strong><i class="demo-progress progress-one"></i></span><span>DEVELOPMENT<br><strong>Built with purpose.</strong><i class="demo-progress progress-two"></i></span></div><div class="demo-project-row"><span class="demo-project-symbol">✳</span><div>Something worth building.<small>Product experience · In progress</small></div><i class="demo-project-check">✓</i></div><div class="demo-skeleton"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            </div>
+            <div class="demo-workflow" *ngIf="activeDemo === 1"><span class="workflow-caption">A SMARTER FLOW</span><div class="workflow-node"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#code"></use></svg><div>Collect<small>Bring your inputs together</small></div><span>01</span></div><i class="workflow-connector"></i><div class="workflow-node node-highlight"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#spark"></use></svg><div>Understand<small>Put intelligence to work</small></div><span>02</span></div><i class="workflow-connector"></i><div class="workflow-node"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#check"></use></svg><div>Move forward<small>A useful outcome, ready to go</small></div><span>03</span></div></div>
+            <div class="demo-network" *ngIf="activeDemo === 2"><div class="network-central"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#network"></use></svg><strong>One connected experience.</strong><span>PEOPLE + PLATFORMS + POSSIBILITY</span></div><div class="network-line"></div><div class="network-satellites"><span><svg aria-hidden="true"><use href="assets/compileon-icons.svg#code"></use></svg>Applications</span><span><svg aria-hidden="true"><use href="assets/compileon-icons.svg#cloud"></use></svg>Your cloud</span><span><svg aria-hidden="true"><use href="assets/compileon-icons.svg#chat"></use></svg>Live updates</span></div></div>
+          </div>
+          <div class="demo-description"><div><span class="example-label">ILLUSTRATIVE SOLUTION</span><h3>{{ demoTitles[activeDemo] }}</h3><p>{{ demoDescriptions[activeDemo] }}</p><div class="use-case-tags"><span *ngFor="let example of demoUseCases[activeDemo]">{{ example }}</span></div></div><button (click)="startProject()" class="round-link" aria-label="Discuss a solution like this"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#diagonal"></use></svg></button></div>
+        </article>
+        <article class="possibility-aside"><div class="aside-topline"><span>THINK BEYOND THE OBVIOUS</span><svg aria-hidden="true"><use href="assets/compileon-icons.svg#spark"></use></svg></div><div class="idea-sculpture" aria-hidden="true"><div class="sculpture-ring ring-a"></div><div class="sculpture-ring ring-b"></div><div class="sculpture-ring ring-c"></div><span>✳</span></div><div><h3>Your next big thing<br>starts with a<br><span>small conversation.</span></h3><p>No perfect brief required.<br>Just a problem worth solving.</p><button class="button button-lime" (click)="openAssistant()">Let’s talk about it <svg aria-hidden="true"><use href="assets/compileon-icons.svg#diagonal"></use></svg></button></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="approach" class="section approach shell">
+    <div class="section-heading reveal"><div><span class="eyebrow section-label">03 / HOW WE THINK & BUILD</span><h2>Clarity at every step.<br><span class="serif-word">Momentum all the way.</span></h2></div><p>Good technology is a collaborative effort.<br class="desktop-break"> Here’s how we bring it to life.</p></div>
+    <div class="process-grid reveal"><article *ngFor="let step of process; let i = index"><div class="process-top"><span>{{ step.number }}</span><svg aria-hidden="true"><use href="assets/compileon-icons.svg#arrow"></use></svg></div><h3>{{ step.title }}</h3><p>{{ step.text }}</p><div class="process-deliverable"><span>YOU COME AWAY WITH</span><strong>{{ processDeliverables[i] }}</strong></div></article></div>
+  </section>
+
+  <section id="about" class="about-section">
+    <div class="shell about-layout">
+      <div class="about-copy reveal"><span class="eyebrow">04 / THE PEOPLE BEHIND THE POSSIBILITY</span><h2>Curiosity is<br>our <span>source code.</span></h2><p>We’re Compileon Innovation Private Limited. We bring software development, AI, cloud engineering and connected experiences together around one idea: build technology with a reason to exist.</p><p>Ask better questions. Care about the details. Make the complicated feel simple. That’s the thinking we bring to every new conversation.</p><button class="text-link light-link" (click)="startProject()">Let’s make something meaningful <svg aria-hidden="true"><use href="assets/compileon-icons.svg#diagonal"></use></svg></button></div>
+      <div class="principles reveal"><div><span>01</span><h3>Purpose before process.</h3><p>Start with the problem. Make every technical decision work toward a useful outcome.</p></div><div><span>02</span><h3>Clarity over complexity.</h3><p>Good engineering should make things easier to use, understand and improve.</p></div><div><span>03</span><h3>Built to move forward.</h3><p>Think beyond the first launch. Leave room for learning, change and the next idea.</p></div></div>
+    </div>
+    <div class="shell engagement-models reveal"><div class="engagement-heading"><span class="eyebrow">DIFFERENT STARTING POINTS. ONE THOUGHTFUL APPROACH.</span><p>Meet your project where it is.</p></div><div><article *ngFor="let model of engagementModels"><h3>{{ model.title }}</h3><p>{{ model.text }}</p></article></div></div>
+    <div class="about-watermark" aria-hidden="true">compileon.</div>
+  </section>
+
+  <section class="section faq-section shell">
+    <div class="faq-heading reveal"><span class="eyebrow section-label">A LITTLE MORE CLARITY</span><h2>Good questions.<br><span class="serif-word">Straight answers.</span></h2><button class="text-link" (click)="openAssistant()">Have another question? Ask us <svg aria-hidden="true"><use href="assets/compileon-icons.svg#chat"></use></svg></button></div>
+    <div class="faq-list reveal"><div class="faq-item" *ngFor="let faq of faqs; let i = index" [class.expanded]="openFaq === i"><h3><button (click)="openFaq = openFaq === i ? -1 : i" [attr.aria-expanded]="openFaq === i" [attr.aria-controls]="'faq-answer-' + i" [attr.id]="'faq-question-' + i">{{ faq.question }}<span aria-hidden="true">{{ openFaq === i ? '−' : '+' }}</span></button></h3><div *ngIf="openFaq === i" [attr.id]="'faq-answer-' + i" role="region" [attr.aria-labelledby]="'faq-question-' + i"><p>{{ faq.answer }}</p></div></div></div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="shell contact-layout">
+      <div class="contact-copy reveal"><span class="eyebrow section-label">YOUR NEXT CHAPTER STARTS HERE</span><h2>Have a thought?<br>Let’s make it<br><span class="serif-word">a thing.</span><span class="contact-star" aria-hidden="true">✳</span></h2><p>A new product. A smarter process. A better digital experience. Tell us what you have in mind.</p><div class="contact-note"><span class="brand-mark small-mark" aria-hidden="true"><span></span></span><div>Big ambition.<br><strong>A thoughtful place to start.</strong></div></div></div>
+      <div class="contact-form-wrap reveal">
+        <div class="inquiry-success" *ngIf="inquiryReference; else inquiryForm" role="status"><span class="success-check"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#check"></use></svg></span><span class="eyebrow section-label">A GOOD PLACE TO START</span><h3>Your idea is<br>in good company.</h3><p>Your project enquiry has been saved for the Compileon team to review. Confirmation emails are queued for you and our directors.</p><span class="reference">YOUR REFERENCE · {{ inquiryReference }}</span><button class="button button-dark" (click)="anotherInquiry()">Send another enquiry <svg aria-hidden="true"><use href="assets/compileon-icons.svg#diagonal"></use></svg></button></div>
+        <ng-template #inquiryForm>
+          <form [formGroup]="contactForm" (ngSubmit)="submitInquiry()" novalidate>
+            <div class="form-intro"><h3>Let’s hear your idea.</h3><span>FIELDS MARKED * ARE REQUIRED</span></div>
+            <div class="form-row-custom"><div class="field"><label for="project-name">Your name *</label><input id="project-name" formControlName="fullName" placeholder="Alex Morgan" autocomplete="name" maxlength="120" [attr.aria-invalid]="invalid('fullName')" aria-describedby="name-error"><span id="name-error" class="field-error" *ngIf="invalid('fullName')">Please enter your name (at least 2 characters).</span></div><div class="field"><label for="project-email">Email address *</label><input id="project-email" type="email" formControlName="email" placeholder="alex@yourcompany.com" autocomplete="email" maxlength="320" [attr.aria-invalid]="invalid('email')" aria-describedby="email-error"><span id="email-error" class="field-error" *ngIf="invalid('email')">Please enter a valid email address.</span></div></div>
+            <div class="field"><label for="project-service">What are you thinking about? *</label><select id="project-service" formControlName="service"><option *ngFor="let service of services" [value]="service.name">{{ service.name }}</option><option value="Let's figure it out together">Let’s figure it out together</option></select></div>
+            <div class="field"><label for="project-brief">A little about your idea *</label><textarea id="project-brief" formControlName="brief" rows="4" maxlength="4000" placeholder="The challenge, the possibilities, the thing you can’t stop thinking about…" [attr.aria-invalid]="invalid('brief')" aria-describedby="brief-error"></textarea><span id="brief-error" class="field-error" *ngIf="invalid('brief')">Share a little more detail (20–4,000 characters).</span></div>
+            <div class="honeypot" aria-hidden="true"><label for="project-website">Leave this field empty</label><input id="project-website" formControlName="website" tabindex="-1" autocomplete="off"></div>
+            <label class="consent-field"><input type="checkbox" formControlName="consent"><span>I agree that Compileon can use these details to respond to this enquiry. <button type="button" (click)="showPrivacy()">How we use your information</button></span></label><span class="field-error" *ngIf="invalid('consent')">Please agree before sending your enquiry.</span>
+            <p class="form-error" role="alert" *ngIf="inquiryError">{{ inquiryError }}</p>
+            <button class="button button-dark submit-project" type="submit" [disabled]="sending">{{ sending ? 'Sending your idea…' : 'Let’s start something' }}<svg aria-hidden="true"><use href="assets/compileon-icons.svg#diagonal"></use></svg></button><p class="form-footnote">A conversation, not a commitment.</p>
+          </form>
+        </ng-template>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="shell"><div class="footer-main"><a class="brand footer-brand" href="/homepage"><span class="brand-mark" aria-hidden="true"><span></span></span><span>compileon<span class="brand-period">.</span></span></a><p>Good ideas deserve<br>thoughtful engineering.</p><a routerLink="/admin" class="staff-link">Team workspace ↗</a><a class="back-top" href="#main">Back to top <span aria-hidden="true">↑</span></a></div><div class="footer-bottom"><span>© {{ year }} Compileon Innovation Private Limited</span><span>Built on curiosity. Made for what’s next.</span><button (click)="showPrivacy()">Privacy & your information</button></div></div></footer>
+
+<app-realtime-chat (project)="startProject()"></app-realtime-chat>
+<div *ngIf="privacyOpen" class="privacy-overlay" (click)="closePrivacy()"><section class="privacy-dialog" role="dialog" aria-modal="true" aria-labelledby="privacy-title" (click)="$event.stopPropagation()" (keydown.tab)="trapPrivacy($event)"><button #privacyClose class="privacy-close" (click)="closePrivacy()" aria-label="Close privacy information"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#close"></use></svg></button><span class="eyebrow section-label">YOUR INFORMATION</span><h2 id="privacy-title">A clear conversation.</h2><p>The project form saves your name, email, area of interest and brief in Compileon’s project database so the team can review and respond to your enquiry.</p><p>The assistant and live-agent service store chat messages and replies for conversation history and follow-up. Agent requests notify the super-admin team by email. Project confirmations and responses are emailed to the address you provide and our directors. Its session identifier stays in this browser tab. Please avoid sharing passwords, financial details or other sensitive information in chat.</p><p>The guided assistant answers questions about the published service areas. You can request a real agent from the chat panel. It does not confirm prices, response times or project commitments.</p></section></div>

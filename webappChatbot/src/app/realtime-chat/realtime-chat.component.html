@@ -1,0 +1,32 @@
+<button *ngIf="!opened" class="chat-launcher" (click)="open()" aria-label="Open Compileon assistant" aria-haspopup="dialog">
+  <span class="launcher-icon"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#chat"></use></svg></span>
+  <span>Let’s talk<span class="launcher-dot"></span></span>
+</button>
+
+<section *ngIf="opened" class="chat-panel" role="dialog" aria-labelledby="chat-title">
+  <header class="chat-header">
+    <span class="assistant-mark" aria-hidden="true">c<span>•</span></span>
+    <div><h2 id="chat-title">Compileon assistant</h2><span class="connection-label"><i [class.online]="connectionState === 'online'"></i>{{ connectionState === 'online' ? 'Here to help you build' : connectionState === 'reconnecting' ? 'Reconnecting…' : connectionState === 'connecting' ? 'Connecting…' : 'Ready when you are' }}</span></div>
+    <button class="icon-button" (click)="close()" aria-label="Close assistant"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#close"></use></svg></button>
+  </header>
+  <div class="chat-intro"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#spark"></use></svg> A little clarity for your next big idea.</div>
+  <div class="handoff-toolbar" *ngIf="!liveSupport && !showHandoff"><span>Prefer a human conversation?</span><button (click)="beginHandoff()">Talk to an agent ↗</button></div>
+  <section *ngIf="ticket && !showHandoff" class="support-state" [class.active-support]="ticket.status === 'Active'"><div><strong>{{ ticket.status === 'Active' ? ticket.agentOnline ? 'Connected with ' + ticket.assignedAdminName : ticket.assignedAdminName + ' is away' : ticket.status === 'Waiting' ? 'You are in the team queue' : 'This conversation is closed' }}</strong><span>{{ ticket.status === 'Waiting' ? 'Assigned to ' + ticket.assignedAdminName + '. You can leave a message while you wait.' : ticket.status === 'Active' ? ticket.agentOnline ? 'Your messages go directly to your agent.' : 'Your messages are saved for the team to review.' : 'You can ask another question or request an agent again.' }}</span></div><button *ngIf="liveSupport" (click)="endSupport()" [disabled]="handoffBusy || pending">End chat</button></section>
+  <form *ngIf="showHandoff" class="handoff-form" (ngSubmit)="requestAgent()"><div><h3>A human, on the other side.</h3><button type="button" (click)="showHandoff = false" aria-label="Cancel agent request">×</button></div><p>Tell us a little about yourself. We will assign your query to a super admin.</p><label for="handoff-name">Your name *</label><input id="handoff-name" name="customerName" [(ngModel)]="customerName" minlength="2" maxlength="120" required autocomplete="name"><label for="handoff-email">Email (optional)</label><input id="handoff-email" name="customerEmail" [(ngModel)]="customerEmail" type="email" maxlength="320" autocomplete="email"><label for="handoff-subject">What can we help with? *</label><input id="handoff-subject" name="customerSubject" [(ngModel)]="customerSubject" required maxlength="200"><small>These details are shared with the support team for this conversation and follow-up.</small><button class="request-human" type="submit" [disabled]="handoffBusy || customerName.trim().length < 2 || !customerSubject.trim()">{{ handoffBusy ? 'Sending request…' : 'Connect me with the team' }} ↗</button></form>
+  <div [hidden]="showHandoff" class="chat-messages" #messageList aria-live="polite" aria-relevant="additions">
+    <div *ngFor="let message of messages; trackBy: trackMessage" class="message" [class.user-message]="message.role === 'user'" [class.agent-message]="message.role === 'agent'">
+      <span class="message-author">{{ message.role === 'user' ? 'You' : message.author || 'Compileon' }}</span>
+      <p>{{ message.text }}</p>
+      <div class="message-meta"><time>{{ message.time | date:'h:mm a' }}</time><button *ngIf="message.failed" (click)="send(message.text, message)" [disabled]="pending">Retry message ↗</button></div>
+    </div>
+    <div *ngIf="loading || pending" class="typing" role="status"><span></span><span></span><span></span><span class="sr-only">{{ loading ? 'Loading your conversation' : 'Preparing a reply' }}</span></div>
+  </div>
+  <div class="suggestions" *ngIf="!pending && !loading && !liveSupport && !showHandoff"><span>TRY ASKING</span><button *ngFor="let suggestion of suggestions" (click)="send(suggestion)">{{ suggestion }} <span aria-hidden="true">↗</span></button></div>
+  <div class="chat-error" *ngIf="error" role="status">{{ error }} <button *ngIf="connectionState === 'offline'" (click)="retryConnection()">Reconnect</button></div>
+  <form [hidden]="showHandoff" class="chat-composer" (ngSubmit)="send()">
+    <label class="sr-only" for="assistant-message">Your message</label>
+    <input id="assistant-message" #chatInput name="message" [(ngModel)]="draft" maxlength="2000" autocomplete="off" [placeholder]="liveSupport ? 'Message your agent…' : 'What’s on your mind?'" [disabled]="pending || loading">
+    <button type="submit" [disabled]="!draft.trim() || pending || loading" aria-label="Send message"><svg aria-hidden="true"><use href="assets/compileon-icons.svg#send"></use></svg></button>
+  </form>
+  <footer class="chat-footer"><button (click)="newChat()" [disabled]="pending || liveSupport">New chat</button><span>{{ liveSupport ? 'A real conversation with our team.' : 'Guided answers. Thoughtful next steps.' }}</span><button (click)="startProject()">Start a project ↗</button></footer>
+</section>
